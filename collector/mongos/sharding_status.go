@@ -172,8 +172,10 @@ func (status *ShardingStats) Export(ch chan<- prometheus.Metric) {
 			}
 		}
 	}
-	balancerIsEnabled.Set(status.IsBalanced)
-	balancerChunksBalanced.Set(status.BalancerEnabled)
+//sh.getBalancerState()  mongodb_mongos_sharding_balancer_enabled
+	balancerIsEnabled.Set(status.BalancerEnabled) 
+//sharding-migration-thresholds  mongodb_mongos_sharding_chunks_is_balanced
+	balancerChunksBalanced.Set(status.IsBalanced)
 
 	balancerIsEnabled.Collect(ch)
 	balancerChunksBalanced.Collect(ch)
